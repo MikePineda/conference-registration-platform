@@ -16,7 +16,8 @@
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "migration:run": "node ace migration:run"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
@@ -68,6 +69,7 @@
     "@vinejs/vine": "^4.4.0",
     "better-sqlite3": "^13.0.3",
     "luxon": "^3.7.2",
+    "mysql2": "^3.24.2",
     "reflect-metadata": "^0.2.2"
   },
   "hotHook": {

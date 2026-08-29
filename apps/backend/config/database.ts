@@ -1,11 +1,12 @@
 import app from '@adonisjs/core/services/app'
 import { defineConfig } from '@adonisjs/lucid'
+import env from '#start/env'
 
 const dbConfig = defineConfig({
   /**
    * Default connection used for all queries.
    */
-  connection: 'sqlite',
+  connection: 'mysql',
 
   connections: {
     /**
@@ -72,21 +73,21 @@ const dbConfig = defineConfig({
      * MySQL / MariaDB connection.
      * Install package to switch: npm install mysql2
      */
-    // mysql: {
-    //   client: 'mysql2',
-    //   connection: {
-    //     host: process.env.MYSQL_HOST,
-    //     port: Number(process.env.MYSQL_PORT || 3306),
-    //     user: process.env.MYSQL_USER,
-    //     password: process.env.MYSQL_PASSWORD,
-    //     database: process.env.MYSQL_DB_NAME,
-    //   },
-    //   migrations: {
-    //     naturalSort: true,
-    //     paths: ['database/migrations'],
-    //   },
-    //   debug: app.inDev,
-    // },
+    mysql: {
+      client: 'mysql2',
+      connection: {
+        host: env.get('DB_HOST'),
+        port: Number(env.get('DB_PORT')),
+        user: env.get('DB_USER'),
+        password: env.get('DB_PASSWORD'),
+        database: env.get('DB_DATABASE'),
+      },
+      migrations: {
+        naturalSort: true,
+        paths: ['database/migrations'],
+      },
+      debug: app.inDev,
+    },
 
     /**
      * Microsoft SQL Server connection.
