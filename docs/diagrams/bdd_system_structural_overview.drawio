@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="VedM2oZ8EZh0MV8OZXqK">
-        <mxGraphModel dx="973" dy="1071" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="973" dy="608" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -79,7 +79,7 @@
                 <mxCell id="xJjwX3G_kVC4MwhyTJGV-27" value="name: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-26" vertex="1">
                     <mxGeometry y="26" width="140" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="xJjwX3G_kVC4MwhyTJGV-28" value="&lt;div&gt;date&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: String&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-26" vertex="1">
+                <mxCell id="xJjwX3G_kVC4MwhyTJGV-28" value="&lt;div&gt;date&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: Date&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-26" vertex="1">
                     <mxGeometry y="52" width="140" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="xJjwX3G_kVC4MwhyTJGV-29" value="capacity: Integer" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-26" vertex="1">
@@ -110,7 +110,7 @@
                 <mxCell id="xJjwX3G_kVC4MwhyTJGV-41" value="&amp;lt;&amp;lt;block&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Reservation&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="320" y="602" width="150" height="104" as="geometry"/>
                 </mxCell>
-                <mxCell id="xJjwX3G_kVC4MwhyTJGV-42" value="attendee_email: : String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-41" vertex="1">
+                <mxCell id="xJjwX3G_kVC4MwhyTJGV-42" value="attendee_email: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-41" vertex="1">
                     <mxGeometry y="26" width="150" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="xJjwX3G_kVC4MwhyTJGV-43" value="&lt;div&gt;reservation_code&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;: String&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="xJjwX3G_kVC4MwhyTJGV-41" vertex="1">
