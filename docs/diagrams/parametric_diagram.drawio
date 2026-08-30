@@ -1,0 +1,47 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="JOuc72NJ5-7CPLf_0bRe">
+    <mxGraphModel dx="874" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-1" parent="1" style="html=1;shape=mxgraph.sysml.package;overflow=fill;labelX=254.75;align=left;spacingLeft=5;verticalAlign=top;spacingTop=-3;" value="&lt;p style=&quot;margin:0px;margin-top:4px;margin-left:5px;text-align:left;&quot;&gt;&lt;b&gt;par&lt;/b&gt;&amp;nbsp;[block] Conference [Capacity Constraint]&lt;/p&gt;" vertex="1">
+          <mxGeometry height="440" width="670" x="70" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-4" parent="1" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;html=1;shape=mxgraph.sysml.paramDgm;fontStyle=1;whiteSpace=wrap;align=center;" value="&lt;p style=&quot;font-weight: 400; margin: 4px 0px 0px;&quot;&gt;&amp;lt;&amp;lt;constraint&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Capacity rule&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;font-weight: 400; margin: 0px 0px 0px 8px;&quot;&gt;{count &amp;lt;= capacity}&lt;/p&gt;" vertex="1">
+          <mxGeometry height="150" width="220" x="480" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-5" connectable="0" parent="7dbRj8sS-Qcac4tS71d9-4" style="html=1;resizable=0;align=left;verticalAlign=middle;labelPosition=left;verticalLabelPosition=middle;labelBackgroundColor=none;fontSize=10;spacingLeft=22;fontStyle=1;" value="count: Integer" vertex="1">
+          <mxGeometry y="37.5" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-6" connectable="0" parent="7dbRj8sS-Qcac4tS71d9-4" style="html=1;resizable=0;align=left;verticalAlign=middle;labelPosition=left;verticalLabelPosition=middle;labelBackgroundColor=none;fontSize=10;spacingLeft=22;fontStyle=1;" value="capacity: Integer" vertex="1">
+          <mxGeometry y="112.5" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-7" parent="1" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;shape=rect;html=1;fontSize=10;verticalLabelPosition=top;verticalAlign=bottom;" value="count: Integer" vertex="1">
+          <mxGeometry height="20" width="20" x="130" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-8" parent="1" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;shape=rect;html=1;fontSize=10;verticalLabelPosition=top;verticalAlign=bottom;" value="capacity: Integer" vertex="1">
+          <mxGeometry height="20" width="20" x="130" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-9" edge="1" parent="1" source="7dbRj8sS-Qcac4tS71d9-4" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;endArrow=none;html=1;edgeStyle=none;exitY=0.25;exitX=0;entryY=0.5;entryX=1;rounded=0;" target="7dbRj8sS-Qcac4tS71d9-7" value="">
+          <mxGeometry relative="1" x="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-10" edge="1" parent="1" source="7dbRj8sS-Qcac4tS71d9-4" style="strokeColor=inherit;fillColor=inherit;gradientColor=inherit;endArrow=none;html=1;edgeStyle=none;exitY=0.75;exitX=0;entryY=0.5;entryX=1;rounded=0;" target="7dbRj8sS-Qcac4tS71d9-8" value="">
+          <mxGeometry relative="1" x="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-14" parent="1" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" value="Derived from Reservation&lt;div&gt;multiplicity 0..* (calculated, not stored)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="170" x="220" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="7dbRj8sS-Qcac4tS71d9-16" edge="1" parent="1" source="7dbRj8sS-Qcac4tS71d9-7" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="7dbRj8sS-Qcac4tS71d9-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="270" />
+              <mxPoint x="90" y="210" />
+            </Array>
+            <mxPoint x="240" y="460" as="sourcePoint" />
+            <mxPoint x="290" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
