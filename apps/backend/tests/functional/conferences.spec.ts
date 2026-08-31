@@ -10,15 +10,21 @@ test.group('Conferences', (group) => {
     client,
     assert,
   }) => {
-    const organizer = await UserFactory.with('conferences', 2).create()
+    const organizer = await UserFactory.with('conferences', 2, (conference) =>
+      conference.with('reservations', 3)
+    ).create()
     await UserFactory.with('conferences', 3).create()
 
     const response = await client.get('/api/v1/conferences').loginAs(organizer)
 
     response.assertStatus(200)
-    const conferences = response.body().data as { startDate: string }[]
+    const conferences = response.body().data as {
+      startDate: string
+      reservationsCount: number
+    }[]
     assert.lengthOf(conferences, 2)
     assert.isTrue(conferences[0].startDate <= conferences[1].startDate)
+    assert.equal(conferences[0].reservationsCount, 3)
   })
 
   test('organizer creates a conference', async ({ client, assert }) => {

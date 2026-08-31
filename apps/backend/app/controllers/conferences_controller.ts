@@ -6,7 +6,11 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class ConferencesController {
   async index({ auth, serialize }: HttpContext) {
     const user = auth.getUserOrFail()
-    const conferences = await user.related('conferences').query().orderBy('start_date', 'asc')
+    const conferences = await user
+      .related('conferences')
+      .query()
+      .withCount('reservations')
+      .orderBy('start_date', 'asc')
 
     return serialize(ConferenceTransformer.transform(conferences))
   }
@@ -25,6 +29,7 @@ export default class ConferencesController {
     const conference = await Conference.query()
       .where('id', params['id'])
       .where('organizerId', user.id)
+      .withCount('reservations')
       .firstOrFail()
 
     return serialize(ConferenceTransformer.transform(conference))
@@ -35,6 +40,7 @@ export default class ConferencesController {
     const conference = await Conference.query()
       .where('id', params['id'])
       .where('organizerId', user.id)
+      .withCount('reservations')
       .firstOrFail()
 
     const payload = await request.validateUsing(updateConferenceValidator)

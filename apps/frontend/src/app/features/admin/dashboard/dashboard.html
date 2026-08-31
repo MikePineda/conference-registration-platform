@@ -32,8 +32,13 @@
                   }
                 </p>
                 @if (conference.description) {
-                  <p class="subtitle mb-0">{{ conference.description }}</p>
+                  <p class="subtitle mb-1">{{ conference.description }}</p>
                 }
+                <p class="capacity mb-0">
+                  <mat-icon inline>group</mat-icon>
+                  {{ conference.capacity - conference.reservationsCount }} of
+                  {{ conference.capacity }} spots available
+                </p>
               </mat-card-content>
               <mat-card-actions>
                 <button matButton="filled" (click)="copyLink(conference, $event)">

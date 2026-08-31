@@ -19,3 +19,8 @@
   bottom: 96px;
   z-index: 20;
 }
+
+.capacity {
+  color: var(--mat-sys-primary);
+  font-weight: 500;
+}
