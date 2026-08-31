@@ -135,7 +135,11 @@ npm run migration:run -- --force
 
 
 ## Known limitations
-- The backend does not send any emails
-- The designs are mobile-only
-- There's a slight downtime everytime we run the deployment steps (1 to 2 seconds)
+
+The current iteration (`v1.0.0`) is the submitted release for Sprint 2 and intentionally does not include:
+- Email notifications
+- Payment gateway
+- Attendee-side flows beyond public view
+- Desktop layouts
+- There's a slight downtime everytime we run the deployment steps (5 seconds)
 - If the ec2 gets deleted, the data gets deleted as well since everything is living in the EC2
