@@ -1,0 +1,8 @@
+.subtitle {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+a {
+  color: var(--mat-sys-primary);
+  font-weight: 500;
+}
