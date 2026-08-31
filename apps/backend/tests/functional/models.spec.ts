@@ -3,7 +3,7 @@ import testUtils from '@adonisjs/core/services/test_utils'
 import { UserFactory } from '#database/factories/user_factory'
 
 test.group('Models & factories', (group) => {
-  group.each.setup(() => testUtils.db().withGlobalTransaction())
+  group.each.setup(() => testUtils.db().wrapInGlobalTransaction())
 
   test('creates organizer with conferences and reservations', async ({ assert }) => {
     const organizer = await UserFactory.with('conferences', 2, (conference) =>
