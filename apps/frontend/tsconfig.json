@@ -13,7 +13,11 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "@api-starter-kit/backend/registry": ["../backend/.adonisjs/client/registry/index.ts"],
+      "@api-starter-kit/backend/data": ["../backend/.adonisjs/client/data.d.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

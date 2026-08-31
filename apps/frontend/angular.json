@@ -24,7 +24,15 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": [
+              "src/material-theme.scss",
+              "bootstrap/dist/css/bootstrap-grid.min.css",
+              "bootstrap/dist/css/bootstrap-utilities.min.css",
+              "src/styles.css"
+            ],
+            "allowedCommonJsDependencies": [
+              "object-to-formdata"
+            ]
           },
           "configurations": {
             "production": {
