@@ -8,6 +8,7 @@ export type ScannedRoutes = {
     'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'public.public_conferences.show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
     'conferences.conferences.index': { paramsTuple?: []; params?: {} }
     'conferences.conferences.store': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -16,11 +17,13 @@ export type ScannedRoutes = {
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'public.public_conferences.show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
     'conferences.conferences.index': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'public.public_conferences.show': { paramsTuple: [ParamValue]; params: {'publicId': ParamValue} }
     'conferences.conferences.index': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }

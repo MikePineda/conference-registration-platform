@@ -36,6 +36,13 @@ router
 
     router
       .group(() => {
+        router.get('conferences/:publicId', [controllers.PublicConferences, 'show'])
+      })
+      .prefix('public')
+      .as('public')
+
+    router
+      .group(() => {
         router.get('', [controllers.Conferences, 'index'])
         router.post('', [controllers.Conferences, 'store'])
         router.get(':id', [controllers.Conferences, 'show'])

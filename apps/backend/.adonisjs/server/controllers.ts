@@ -8,4 +8,5 @@ export const controllers = {
   Conferences: () => import('#controllers/conferences_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
   Profile: () => import('#controllers/profile_controller'),
+  PublicConferences: () => import('#controllers/public_conferences_controller'),
 }
