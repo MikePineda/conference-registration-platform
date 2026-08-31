@@ -150,6 +150,19 @@
         @if (errorMessage()) {
           <p class="text-center text-danger mt-3 mb-0">{{ errorMessage() }}</p>
         }
+
+        @if (isEdit()) {
+          <button
+            matButton="tonal"
+            type="button"
+            class="delete-button mt-5"
+            [disabled]="deleting()"
+            (click)="deleteConference()"
+          >
+            <mat-icon>delete</mat-icon>
+            {{ deleting() ? 'Deleting…' : 'Delete Conference' }}
+          </button>
+        }
       </form>
     </div>
   </div>

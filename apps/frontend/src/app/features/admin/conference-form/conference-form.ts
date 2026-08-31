@@ -8,8 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTimepickerModule } from '@angular/material/timepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 import { TuyauHTTPError } from '@tuyau/core/client';
 import { Conferences } from '../../../core/conferences/conferences';
+import {
+  ConfirmDialog,
+  ConfirmDialogData,
+} from '../../../shared/components/confirm-dialog/confirm-dialog';
 
 function combineDateTime(date: Date, time: Date | null): Date {
   const combined = new Date(date);
@@ -42,8 +48,11 @@ export class ConferenceForm implements OnInit {
   id = input<string>();
   isEdit = computed(() => this.id() !== undefined);
 
+  private dialog = inject(MatDialog);
+
   submitting = signal(false);
   errorMessage = signal<string | null>(null);
+  deleting = signal(false);
   imageError = signal(false);
 
   form = this.fb.group({
@@ -129,6 +138,32 @@ export class ConferenceForm implements OnInit {
       }
     } finally {
       this.submitting.set(false);
+    }
+  }
+
+  async deleteConference() {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      data: {
+        title: 'Delete conference?',
+        message: `"${this.form.controls.name.value}" and all of its reservations will be permanently deleted. This cannot be undone.`,
+        confirmLabel: 'Delete',
+        destructive: true,
+      } satisfies ConfirmDialogData,
+    });
+
+    const confirmed = await firstValueFrom(dialogRef.afterClosed());
+    if (!confirmed) return;
+
+    this.deleting.set(true);
+    this.errorMessage.set(null);
+
+    try {
+      await this.conferences.delete(Number(this.id()));
+      this.router.navigateByUrl('/dashboard');
+    } catch {
+      this.errorMessage.set('Could not delete the conference. Please try again.');
+    } finally {
+      this.deleting.set(false);
     }
   }
 }

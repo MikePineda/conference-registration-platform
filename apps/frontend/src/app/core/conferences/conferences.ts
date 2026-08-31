@@ -38,4 +38,8 @@ export class Conferences {
     });
     return data;
   }
+
+  async delete(id: number): Promise<void> {
+    await this.api.api.conferences.conferences.destroy({ params: { id } });
+  }
 }
