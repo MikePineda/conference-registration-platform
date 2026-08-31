@@ -1,0 +1,26 @@
+.hero {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.info-card {
+  background-color: var(--mat-sys-surface-container);
+  border-radius: 16px;
+}
+
+.icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--mat-sys-surface-container-highest);
+}
+
+.register-button {
+  min-width: 280px;
+}

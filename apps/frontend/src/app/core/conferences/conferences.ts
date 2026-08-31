@@ -16,6 +16,11 @@ export interface ConferencePayload {
 export class Conferences {
   private api = inject(API);
 
+  async getPublic(publicId: string): Promise<Data.Conference> {
+    const { data } = await this.api.api.public.publicConferences.show({ params: { publicId } });
+    return data;
+  }
+
   async list(): Promise<Data.Conference[]> {
     const { data } = await this.api.api.conferences.conferences.index({});
     return data;
