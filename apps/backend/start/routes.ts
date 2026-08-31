@@ -33,5 +33,15 @@ router
       .prefix('account')
       .as('profile')
       .use(middleware.auth())
+
+    router
+      .group(() => {
+        router.post('', [controllers.Conferences, 'store'])
+        router.get(':id', [controllers.Conferences, 'show'])
+        router.put(':id', [controllers.Conferences, 'update'])
+      })
+      .prefix('conferences')
+      .as('conferences')
+      .use(middleware.auth())
   })
   .prefix('/api/v1')

@@ -26,6 +26,16 @@ export const routes: Routes = [
         path: 'profile',
         loadComponent: () => import('./features/admin/profile/profile').then((m) => m.Profile),
       },
+      {
+        path: 'conferences/new',
+        loadComponent: () =>
+          import('./features/admin/conference-form/conference-form').then((m) => m.ConferenceForm),
+      },
+      {
+        path: 'conferences/:id/edit',
+        loadComponent: () =>
+          import('./features/admin/conference-form/conference-form').then((m) => m.ConferenceForm),
+      },
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
     ],
   },
