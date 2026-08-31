@@ -69,4 +69,20 @@ test.group('Conferences', (group) => {
       data: { id: conference.id, name: 'Renamed Conference', capacity: 99 },
     })
   })
+
+  test('organizer cant create a conference with a capacity over 10000000', async ({ client }) => {
+    const owner = await UserFactory.create()
+
+    const response = await client.post(`/api/v1/conferences`).loginAs(owner).json({
+      name: 'Big conference',
+      location: 'Brisbane',
+      capacity: 10000001,
+      startDate: '2026-12-01T10:00:00.000Z',
+    })
+
+    response.assertStatus(422)
+    response.assertBodyContains({
+      errors: [{ field: 'capacity', rule: 'max' }],
+    })
+  })
 })

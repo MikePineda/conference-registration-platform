@@ -5,7 +5,7 @@ const conferenceFields = {
   description: vine.string().trim().nullable().optional(),
   imageUrl: vine.string().trim().url().maxLength(1000).nullable().optional(),
   location: vine.string().trim().maxLength(200).nullable().optional(),
-  capacity: vine.number().withoutDecimals().min(1),
+  capacity: vine.number().withoutDecimals().min(1).max(10000000),
   startDate: vine.date({ formats: { utc: true } }),
   endDate: vine
     .date({ formats: { utc: true } })
