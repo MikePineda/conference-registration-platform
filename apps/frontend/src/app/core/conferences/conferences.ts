@@ -16,6 +16,11 @@ export interface ConferencePayload {
 export class Conferences {
   private api = inject(API);
 
+  async list(): Promise<Data.Conference[]> {
+    const { data } = await this.api.api.conferences.conferences.index({});
+    return data;
+  }
+
   async create(payload: ConferencePayload): Promise<Data.Conference> {
     const { data } = await this.api.api.conferences.conferences.store({ body: payload });
     return data;
@@ -32,5 +37,9 @@ export class Conferences {
       body: payload,
     });
     return data;
+  }
+
+  async delete(id: number): Promise<void> {
+    await this.api.api.conferences.conferences.destroy({ params: { id } });
   }
 }

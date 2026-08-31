@@ -6,6 +6,27 @@ import { ConferenceFactory } from '#database/factories/conference_factory'
 test.group('Conferences', (group) => {
   group.each.setup(() => testUtils.db().wrapInGlobalTransaction())
 
+  test('organizer lists only their own conferences, ordered by start date', async ({
+    client,
+    assert,
+  }) => {
+    const organizer = await UserFactory.with('conferences', 2, (conference) =>
+      conference.with('reservations', 3)
+    ).create()
+    await UserFactory.with('conferences', 3).create()
+
+    const response = await client.get('/api/v1/conferences').loginAs(organizer)
+
+    response.assertStatus(200)
+    const conferences = response.body().data as {
+      startDate: string
+      reservationsCount: number
+    }[]
+    assert.lengthOf(conferences, 2)
+    assert.isTrue(conferences[0].startDate <= conferences[1].startDate)
+    assert.equal(conferences[0].reservationsCount, 3)
+  })
+
   test('organizer creates a conference', async ({ client, assert }) => {
     const organizer = await UserFactory.create()
 
@@ -20,7 +41,7 @@ test.group('Conferences', (group) => {
     response.assertBodyContains({
       data: { name: 'AdonisConf 2026', location: 'Brisbane, Australia', capacity: 150 },
     })
-    assert.exists(response.body().data.publicId)
+    assert.exists((response.body().data as { publicId: string }).publicId)
 
     await organizer.load('conferences')
     assert.lengthOf(organizer.conferences, 1)
@@ -51,6 +72,22 @@ test.group('Conferences', (group) => {
       })
 
     response.assertStatus(404)
+  })
+
+  test('organizer deletes their own conference along with its reservations', async ({
+    client,
+    db,
+  }) => {
+    const owner = await UserFactory.create()
+    const conference = await ConferenceFactory.merge({ organizerId: owner.id })
+      .with('reservations', 2)
+      .create()
+
+    const response = await client.delete(`/api/v1/conferences/${conference.id}`).loginAs(owner)
+
+    response.assertStatus(200)
+    await db.assertMissing('conferences', { id: conference.id })
+    await db.assertMissing('reservations', { conference_id: conference.id })
   })
 
   test('organizer updates their own conference', async ({ client }) => {

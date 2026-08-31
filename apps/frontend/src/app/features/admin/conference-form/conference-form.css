@@ -1,0 +1,4 @@
+.delete-button {
+  background-color: var(--mat-sys-error-container);
+  color: var(--mat-sys-on-error-container);
+}

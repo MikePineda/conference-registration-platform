@@ -20,9 +20,11 @@ export interface ApiDefinition {
   }
   conferences: {
     conferences: {
+      index: typeof routes['conferences.conferences.index']
       store: typeof routes['conferences.conferences.store']
       show: typeof routes['conferences.conferences.show']
       update: typeof routes['conferences.conferences.update']
+      destroy: typeof routes['conferences.conferences.destroy']
     }
   }
 }

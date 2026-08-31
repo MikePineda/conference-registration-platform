@@ -4,6 +4,17 @@ import { createConferenceValidator, updateConferenceValidator } from '#validator
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ConferencesController {
+  async index({ auth, serialize }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const conferences = await user
+      .related('conferences')
+      .query()
+      .withCount('reservations')
+      .orderBy('start_date', 'asc')
+
+    return serialize(ConferenceTransformer.transform(conferences))
+  }
+
   async store({ request, auth, serialize }: HttpContext) {
     const payload = await request.validateUsing(createConferenceValidator)
     const user = auth.getUserOrFail()
@@ -18,6 +29,7 @@ export default class ConferencesController {
     const conference = await Conference.query()
       .where('id', params['id'])
       .where('organizerId', user.id)
+      .withCount('reservations')
       .firstOrFail()
 
     return serialize(ConferenceTransformer.transform(conference))
@@ -28,6 +40,7 @@ export default class ConferencesController {
     const conference = await Conference.query()
       .where('id', params['id'])
       .where('organizerId', user.id)
+      .withCount('reservations')
       .firstOrFail()
 
     const payload = await request.validateUsing(updateConferenceValidator)
@@ -36,5 +49,19 @@ export default class ConferencesController {
     await conference.save()
 
     return serialize(ConferenceTransformer.transform(conference))
+  }
+
+  async destroy({ params, auth }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const conference = await Conference.query()
+      .where('id', params['id'])
+      .where('organizerId', user.id)
+      .firstOrFail()
+
+    await conference.delete()
+
+    return {
+      message: 'Conference deleted successfully',
+    }
   }
 }

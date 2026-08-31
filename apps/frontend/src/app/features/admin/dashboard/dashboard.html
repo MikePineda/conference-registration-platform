@@ -1,4 +1,58 @@
-<p>dashboard works!</p>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <h1 class="mb-1">Active conferences</h1>
+      <p class="subtitle mb-4">Manage your events and registrations</p>
+
+      @if (loading()) {
+        <p class="subtitle">Loading conferences…</p>
+      } @else if (errorMessage()) {
+        <p class="text-danger">{{ errorMessage() }}</p>
+      } @else if (conferences().length === 0) {
+        <p class="subtitle">No conferences yet. Create your first one with the + button.</p>
+      }
+
+      <div class="row g-3">
+        @for (conference of conferences(); track conference.id) {
+          <div class="col-12">
+            <mat-card
+              class="conference-card h-100"
+              appearance="outlined"
+              (click)="openConference(conference)"
+            >
+              @if (conference.imageUrl) {
+                <img mat-card-image [src]="conference.imageUrl" [alt]="conference.name" />
+              }
+              <mat-card-content class="pt-3">
+                <h2 class="mb-1">{{ conference.name }}</h2>
+                <p class="subtitle mb-1">
+                  {{ conference.startDate | date: 'MMM d, y · h:mm a' }}
+                  @if (conference.endDate) {
+                    — {{ conference.endDate | date: 'MMM d, y · h:mm a' }}
+                  }
+                </p>
+                @if (conference.description) {
+                  <p class="subtitle mb-1">{{ conference.description }}</p>
+                }
+                <p class="capacity mb-0">
+                  <mat-icon inline>group</mat-icon>
+                  {{ conference.capacity - conference.reservationsCount }} of
+                  {{ conference.capacity }} spots available
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button matButton="filled" (click)="copyLink(conference, $event)">
+                  <mat-icon>link</mat-icon>
+                  Unique Link
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
 
 <a matFab class="create-fab" routerLink="/conferences/new" aria-label="Create conference">
   <mat-icon>add</mat-icon>

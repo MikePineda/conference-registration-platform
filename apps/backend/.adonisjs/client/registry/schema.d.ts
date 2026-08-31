@@ -55,6 +55,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
     }
   }
+  'conferences.conferences.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/conferences'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['index']>>>
+    }
+  }
   'conferences.conferences.store': {
     methods: ["POST"]
     pattern: '/api/v1/conferences'
@@ -89,6 +101,18 @@ export interface Registry {
       query: ExtractQuery<InferInput<(typeof import('#validators/conference').updateConferenceValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['update']>>>
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'conferences.conferences.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/conferences/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['destroy']>>>
     }
   }
 }
