@@ -12,6 +12,7 @@ export type ScannedRoutes = {
     'conferences.conferences.store': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'conferences.conferences.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'conferences.conferences.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
@@ -31,6 +32,9 @@ export type ScannedRoutes = {
   }
   PUT: {
     'conferences.conferences.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  }
+  DELETE: {
+    'conferences.conferences.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

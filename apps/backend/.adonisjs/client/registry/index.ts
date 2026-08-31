@@ -54,6 +54,12 @@ const routes = {
     tokens: [{"old":"/api/v1/conferences/:id","type":0,"val":"api","end":""},{"old":"/api/v1/conferences/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/conferences/:id","type":0,"val":"conferences","end":""},{"old":"/api/v1/conferences/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['conferences.conferences.update']['types'],
   },
+  'conferences.conferences.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/conferences/:id',
+    tokens: [{"old":"/api/v1/conferences/:id","type":0,"val":"api","end":""},{"old":"/api/v1/conferences/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/conferences/:id","type":0,"val":"conferences","end":""},{"old":"/api/v1/conferences/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['conferences.conferences.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

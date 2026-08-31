@@ -44,4 +44,18 @@ export default class ConferencesController {
 
     return serialize(ConferenceTransformer.transform(conference))
   }
+
+  async destroy({ params, auth }: HttpContext) {
+    const user = auth.getUserOrFail()
+    const conference = await Conference.query()
+      .where('id', params['id'])
+      .where('organizerId', user.id)
+      .firstOrFail()
+
+    await conference.delete()
+
+    return {
+      message: 'Conference deleted successfully',
+    }
+  }
 }

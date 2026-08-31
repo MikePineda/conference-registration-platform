@@ -103,4 +103,16 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'conferences.conferences.destroy': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/conferences/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['destroy']>>>
+    }
+  }
 }

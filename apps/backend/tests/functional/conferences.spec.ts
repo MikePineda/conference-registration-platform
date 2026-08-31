@@ -68,6 +68,22 @@ test.group('Conferences', (group) => {
     response.assertStatus(404)
   })
 
+  test('organizer deletes their own conference along with its reservations', async ({
+    client,
+    db,
+  }) => {
+    const owner = await UserFactory.create()
+    const conference = await ConferenceFactory.merge({ organizerId: owner.id })
+      .with('reservations', 2)
+      .create()
+
+    const response = await client.delete(`/api/v1/conferences/${conference.id}`).loginAs(owner)
+
+    response.assertStatus(200)
+    await db.assertMissing('conferences', { id: conference.id })
+    await db.assertMissing('reservations', { conference_id: conference.id })
+  })
+
   test('organizer updates their own conference', async ({ client }) => {
     const owner = await UserFactory.create()
     const conference = await ConferenceFactory.merge({ organizerId: owner.id }).create()
