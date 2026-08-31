@@ -1,3 +1,17 @@
+.conference-card {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.conference-card:hover {
+  box-shadow: var(--mat-sys-level2);
+}
+
+.conference-card img[mat-card-image] {
+  max-height: 180px;
+  object-fit: cover;
+}
+
 .create-fab {
   position: fixed;
   right: 24px;
