@@ -1,0 +1,7 @@
+.create-fab {
+  position: fixed;
+  right: 24px;
+  /* keep it floating above the bottom nav */
+  bottom: 96px;
+  z-index: 20;
+}
