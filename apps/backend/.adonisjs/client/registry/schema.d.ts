@@ -55,4 +55,40 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
     }
   }
+  'conferences.conferences.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/conferences'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/conference').createConferenceValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/conference').createConferenceValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'conferences.conferences.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/conferences/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['show']>>>
+    }
+  }
+  'conferences.conferences.update': {
+    methods: ["PUT"]
+    pattern: '/api/v1/conferences/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/conference').updateConferenceValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/conference').updateConferenceValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
 }
