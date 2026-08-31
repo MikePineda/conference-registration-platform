@@ -1,0 +1,138 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <a matIconButton routerLink="/dashboard" aria-label="Back to dashboard">
+          <mat-icon>arrow_back</mat-icon>
+        </a>
+        <span class="fw-bold">{{ isEdit() ? 'Edit Conference' : 'Create Conference' }}</span>
+      </div>
+
+      <h1 class="mb-1">Conference details</h1>
+      <p class="subtitle mb-4">
+        {{ isEdit() ? 'Update the information for your event' : 'Provide the information for your new event' }}
+      </p>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="d-flex flex-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Conference Name</mat-label>
+          <input matInput formControlName="name" />
+          @if (form.controls.name.hasError('required')) {
+            <mat-error>Name is required</mat-error>
+          } @else if (form.controls.name.hasError('minlength')) {
+            <mat-error>Name must be at least 3 characters</mat-error>
+          } @else if (form.controls.name.hasError('server')) {
+            <mat-error>{{ form.controls.name.getError('server') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <div class="row gx-3">
+          <div class="col-12 col-sm-7">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Start Date</mat-label>
+              <input matInput [matDatepicker]="startPicker" formControlName="startDate" />
+              <mat-datepicker-toggle matIconSuffix [for]="startPicker" />
+              <mat-datepicker #startPicker />
+              @if (form.controls.startDate.hasError('required')) {
+                <mat-error>Start date is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-5">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Start Time</mat-label>
+              <input matInput [matTimepicker]="startTimePicker" formControlName="startTime" />
+              <mat-timepicker-toggle matIconSuffix [for]="startTimePicker" />
+              <mat-timepicker #startTimePicker />
+              @if (form.controls.startTime.hasError('required')) {
+                <mat-error>Start time is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row gx-3">
+          <div class="col-12 col-sm-7">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>End Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="endPicker"
+                [min]="form.controls.startDate.value"
+                formControlName="endDate"
+              />
+              <mat-datepicker-toggle matIconSuffix [for]="endPicker" />
+              <mat-datepicker #endPicker />
+              @if (form.controls.endDate.hasError('server')) {
+                <mat-error>{{ form.controls.endDate.getError('server') }}</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-5">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>End Time</mat-label>
+              <input matInput [matTimepicker]="endTimePicker" formControlName="endTime" />
+              <mat-timepicker-toggle matIconSuffix [for]="endTimePicker" />
+              <mat-timepicker #endTimePicker />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Capacity</mat-label>
+          <input matInput type="number" min="1" max="10000000" formControlName="capacity" />
+          @if (form.controls.capacity.hasError('required')) {
+            <mat-error>Capacity is required</mat-error>
+          } @else if (form.controls.capacity.hasError('min')) {
+            <mat-error>Capacity must be at least 1</mat-error>
+          } @else if (form.controls.capacity.hasError('max')) {
+            <mat-error>Capacity must not exceed 10000000 </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Location</mat-label>
+          <input matInput formControlName="location" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Image URL</mat-label>
+          <input matInput type="url" formControlName="imageUrl" placeholder="https://…" />
+          <mat-icon matIconSuffix>image</mat-icon>
+          @if (form.controls.imageUrl.hasError('server')) {
+            <mat-error>{{ form.controls.imageUrl.getError('server') }}</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput rows="3" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <div class="row gx-3 mt-2">
+          <div class="col-4">
+            <a matButton="outlined" class="w-100" routerLink="/dashboard">Cancel</a>
+          </div>
+          <div class="col-8">
+            <button matButton="filled" type="submit" class="w-100" [disabled]="submitting()">
+              @if (!isEdit()) {
+                <mat-icon>add</mat-icon>
+              }
+              {{
+                submitting()
+                  ? 'Saving…'
+                  : isEdit()
+                    ? 'Save Changes'
+                    : 'Create Conference'
+              }}
+            </button>
+          </div>
+        </div>
+
+        @if (errorMessage()) {
+          <p class="text-center text-danger mt-3 mb-0">{{ errorMessage() }}</p>
+        }
+      </form>
+    </div>
+  </div>
+</div>
