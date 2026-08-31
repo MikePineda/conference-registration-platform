@@ -36,6 +36,7 @@ router
 
     router
       .group(() => {
+        router.get('', [controllers.Conferences, 'index'])
         router.post('', [controllers.Conferences, 'store'])
         router.get(':id', [controllers.Conferences, 'show'])
         router.put(':id', [controllers.Conferences, 'update'])

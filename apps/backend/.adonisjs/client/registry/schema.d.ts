@@ -55,6 +55,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
     }
   }
+  'conferences.conferences.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/conferences'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['index']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/conferences_controller').default['index']>>>
+    }
+  }
   'conferences.conferences.store': {
     methods: ["POST"]
     pattern: '/api/v1/conferences'

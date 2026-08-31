@@ -8,16 +8,19 @@ export type ScannedRoutes = {
     'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
+    'conferences.conferences.index': { paramsTuple?: []; params?: {} }
     'conferences.conferences.store': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'conferences.conferences.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'conferences.conferences.index': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
     'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'conferences.conferences.index': { paramsTuple?: []; params?: {} }
     'conferences.conferences.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {

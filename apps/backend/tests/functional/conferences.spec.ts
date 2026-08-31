@@ -6,6 +6,21 @@ import { ConferenceFactory } from '#database/factories/conference_factory'
 test.group('Conferences', (group) => {
   group.each.setup(() => testUtils.db().wrapInGlobalTransaction())
 
+  test('organizer lists only their own conferences, ordered by start date', async ({
+    client,
+    assert,
+  }) => {
+    const organizer = await UserFactory.with('conferences', 2).create()
+    await UserFactory.with('conferences', 3).create()
+
+    const response = await client.get('/api/v1/conferences').loginAs(organizer)
+
+    response.assertStatus(200)
+    const conferences = response.body().data as { startDate: string }[]
+    assert.lengthOf(conferences, 2)
+    assert.isTrue(conferences[0].startDate <= conferences[1].startDate)
+  })
+
   test('organizer creates a conference', async ({ client, assert }) => {
     const organizer = await UserFactory.create()
 
@@ -20,7 +35,7 @@ test.group('Conferences', (group) => {
     response.assertBodyContains({
       data: { name: 'AdonisConf 2026', location: 'Brisbane, Australia', capacity: 150 },
     })
-    assert.exists(response.body().data.publicId)
+    assert.exists((response.body().data as { publicId: string }).publicId)
 
     await organizer.load('conferences')
     assert.lengthOf(organizer.conferences, 1)

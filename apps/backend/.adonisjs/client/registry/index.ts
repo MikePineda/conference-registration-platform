@@ -30,6 +30,12 @@ const routes = {
     tokens: [{"old":"/api/v1/account/logout","type":0,"val":"api","end":""},{"old":"/api/v1/account/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/account/logout","type":0,"val":"account","end":""},{"old":"/api/v1/account/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['profile.access_tokens.destroy']['types'],
   },
+  'conferences.conferences.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/conferences',
+    tokens: [{"old":"/api/v1/conferences","type":0,"val":"api","end":""},{"old":"/api/v1/conferences","type":0,"val":"v1","end":""},{"old":"/api/v1/conferences","type":0,"val":"conferences","end":""}],
+    types: placeholder as Registry['conferences.conferences.index']['types'],
+  },
   'conferences.conferences.store': {
     methods: ["POST"],
     pattern: '/api/v1/conferences',
