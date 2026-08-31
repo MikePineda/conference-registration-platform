@@ -1,0 +1,15 @@
+.subtitle {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+a {
+  color: var(--mat-sys-primary);
+  font-weight: 500;
+}
+
+/* "Coming soon": looks like a link but is intentionally not clickable yet */
+.forgot-link {
+  color: var(--mat-sys-on-surface-variant);
+  font-weight: 500;
+  cursor: not-allowed;
+}
