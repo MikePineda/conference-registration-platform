@@ -1,7 +1,45 @@
 <main class="container min-vh-100 d-flex align-items-center justify-content-center">
-  <div class="text-center">
-    <h1>Login</h1>
-    <p>Coming soon.</p>
-    <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+  <div class="row justify-content-center w-100 gx-0">
+    <div class="col-12 col-sm-9 col-md-6 col-lg-4">
+      <h1 class="text-center mb-2">Organizer Login</h1>
+      <p class="subtitle text-center mb-4">Sign in to manage your events and registrations</p>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="d-flex flex-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" autocomplete="email" />
+          @if (form.controls.email.hasError('required')) {
+            <mat-error>Email is required</mat-error>
+          } @else if (form.controls.email.hasError('email')) {
+            <mat-error>Enter a valid email</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            autocomplete="current-password"
+          />
+          @if (form.controls.password.hasError('required')) {
+            <mat-error>Password is required</mat-error>
+          }
+        </mat-form-field>
+
+        <span class="forgot-link align-self-end" title="Coming soon">Forgot Password?</span>
+
+        <button matButton="filled" type="submit" class="mt-3" [disabled]="submitting()">
+          {{ submitting() ? 'Logging in…' : 'Login' }}
+        </button>
+
+        @if (errorMessage()) {
+          <p class="text-center text-danger mt-3 mb-0">{{ errorMessage() }}</p>
+        }
+
+        <p class="text-center mt-3 mb-0">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+      </form>
+    </div>
   </div>
 </main>
