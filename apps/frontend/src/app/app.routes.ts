@@ -3,6 +3,12 @@ import { authGuard, guestGuard } from './core/auth/auth-guard';
 
 export const routes: Routes = [
   {
+    // public attendee page
+    path: 'c/:publicId',
+    loadComponent: () =>
+      import('./features/attendee/conference-page/conference-page').then((m) => m.ConferencePage),
+  },
+  {
     path: 'signup',
     canActivate: [guestGuard],
     loadComponent: () => import('./features/auth/signup/signup').then((m) => m.Signup),

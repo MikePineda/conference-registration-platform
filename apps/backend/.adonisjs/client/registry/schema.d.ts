@@ -55,6 +55,18 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/access_tokens_controller').default['destroy']>>>
     }
   }
+  'public.public_conferences.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/public/conferences/:publicId'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { publicId: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/public_conferences_controller').default['show']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/public_conferences_controller').default['show']>>>
+    }
+  }
   'conferences.conferences.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/conferences'

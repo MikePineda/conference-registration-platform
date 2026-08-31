@@ -18,6 +18,11 @@ export interface ApiDefinition {
       destroy: typeof routes['profile.access_tokens.destroy']
     }
   }
+  public: {
+    publicConferences: {
+      show: typeof routes['public.public_conferences.show']
+    }
+  }
   conferences: {
     conferences: {
       index: typeof routes['conferences.conferences.index']
