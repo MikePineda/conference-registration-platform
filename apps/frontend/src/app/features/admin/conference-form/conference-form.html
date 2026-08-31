@@ -103,6 +103,24 @@
             <mat-error>{{ form.controls.imageUrl.getError('server') }}</mat-error>
           }
         </mat-form-field>
+        @if (form.controls.imageUrl.value; as imageUrl) {
+          <div class="card mt-3 mb-3 shadow-sm">
+            <div class="ratio ratio-16x9 bg-light">
+              <img
+                [src]="imageUrl"
+                alt="Image preview"
+                class="object-fit-cover rounded-bottom"
+                (error)="imageError.set(true)"
+                (load)="imageError.set(false)"
+              />
+            </div>
+            @if (imageError()) {
+              <div class="card-footer text-danger small">
+                Image could not be loaded. Please review the URL
+              </div>
+            }
+          </div>
+        }
 
         <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>

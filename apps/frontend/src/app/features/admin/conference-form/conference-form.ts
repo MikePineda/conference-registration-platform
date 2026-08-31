@@ -44,6 +44,7 @@ export class ConferenceForm implements OnInit {
 
   submitting = signal(false);
   errorMessage = signal<string | null>(null);
+  imageError = signal(false);
 
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
